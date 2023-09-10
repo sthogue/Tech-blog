@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tech Blog</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="flex-column justify-space-around">
+        <nav>
+            <ul>
+                <li class="li-inline nav-item"><a href="/">home</a></li>
+                <li class="li-inline nav-item"><a href="/dashboard">dashboard</a></li>
+                <li class="li-inline nav-item"><a href="/contact">contact</a></li>
+                <!-- Conditionally render login or logout links -->
+                {{#if logged_in}}
+                <li class="li-inline nav-item"><a href="/">logout</a> </li>
+                {{else}}
+                <li class="li-inline nav-item"><a href="/login">Login</a></li>
+                {{/if}}
+            </ul> 
+        </nav>
+        <header class="hero">
+            <h1>
+                <a href="/">The Tech blog</a>
+            </h1>
+            
+        </header>
+        <main class="container container-fluid mt-5">
+            <!-- Render the sub layout -->
+            {{{ body }}}
+        </main>
+        <footer>
+            <p>&copy; 2020 The Tech Blog</p>
+        </footer>
+    </div>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</body>
+</html>
