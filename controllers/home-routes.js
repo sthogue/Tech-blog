@@ -39,12 +39,29 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/signup', (req, res) => {
-    if (req.session.loggedIn){
-        res.redirect('/');
-        return;
+router.get('/signup', async (req, res) => {
+    try {
+        const { username, password } = req.body;
+
+        const existUser = await User.findOne({ where: { username } });
+
+        if (existUser) {
+            res.status(400).json({ message: 'User already exists' });
+            return;
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        const newUser = await User.create({
+            username,
+            password: hashedPassword,
+        });
+
+        await newUser.save();
+        res.status(200).json("User created!")
+    } catch (err) {
+        res.status(500).json(err);
     }
-    res.render('signup');
 });
 
 router.get('/post/:id', async (req, res) => {
