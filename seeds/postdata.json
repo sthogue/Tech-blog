@@ -1,12 +1,1 @@
-[
-    {
-        "post_title": "Test Post 1",
-        "content": "This is a test post",
-        "user_id": "1"
-    },
-    {
-        "post_title": "This is test post 2",
-        "content": "This is a second test post",
-        "user_id": "2"
-    }
-]
+[]
