@@ -7,7 +7,7 @@ router.get('/', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
             where: {
-                user_id: req.session.user_id
+                username: req.session.username
             },
             attributes: ['id', 'title', 'content', 'created_at'],
             include: [
@@ -16,12 +16,8 @@ router.get('/', withAuth, async (req, res) => {
                     attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
                     include:{
                         model: User,
-                        attributes: ['username']
+                        attributes: ['user_id']
                     }
-                },
-                {
-                    model: User,
-                    attributes: ['username']
                 }
             ]
         });
