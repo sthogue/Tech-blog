@@ -9,15 +9,14 @@
 </head>
 
 <body>
-    <div class="flex-column justify-space-around">
-        <nav>
+    <div class=" container flex-column justify-space-around">
+        <nav class="navbar-nav">
             <ul>
-                <li class="li-inline nav-item"><a href="/">home</a></li>
-                <li class="li-inline nav-item"><a href="/dashboard">dashboard</a></li>
-                <li class="li-inline nav-item"><a href="/contact">contact</a></li>
+                <li class="li-inline nav-item"><a href="/">Home</a></li>
+                <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
                 <!-- Conditionally render login or logout links -->
                 {{#if logged_in}}
-                <li class="li-inline nav-item"><a href="/">logout</a> </li>
+                <li class="li-inline nav-item"><a href="/">Logout</a> </li>
                 {{else}}
                 <li class="li-inline nav-item"><a href="/login">Login</a></li>
                 {{/if}}

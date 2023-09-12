@@ -1,0 +1,29 @@
+<div class="dashboard-container">
+    <div class="posts-container">
+        <h3>Your Posts:</h3>
+        {{#each posts as |post|}}
+        <div class="post">
+            <h2>{{post.name}}</h2>
+            <p>{{post.description}}</p>
+            <div class="post-details">
+                <p class="created-by">Created by: {{post.user.name}}</p>
+                <p class="created-on">Created on {{format_date post.date_created}}</p>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    <div class="new-post-btn-container">
+        <a href="#" class="new-post-btn">+ New Post</a>
+    </div>
+    <div class="new-post-form-container" style="display: none;">
+        <form id="new-post-form">
+            <input type="text" name="title" placeholder="Title" required>
+            <textarea name="text" placeholder="Text" required></textarea>
+            <button type="submit">Create Post</button>
+        </form>
+    </div>
+</div>
+
+</section>
+
+<script src="/javascript/new-post.js"></script>
