@@ -1,9 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-//Git all users
-
-router.get('/', async (req, res) => {
+//Get all users
+router.get('/users', async (req, res) => {
   try {
     const userData = await User.findAll({
       attributes: { exclude: ['password'] }
@@ -33,44 +32,15 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/signup', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
-    const userData = await User.create(req.body);
-
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+    const userData = await User.create({
+      username: req.body.username,
+      password: req.body.password});
 
       res.status(200).json(userData);
-    });
   } catch (err) {
     res.status(400).json(err);
-  }
-});
-
-router.get('/signup', async (req, res) => {
-  try {
-    const { username, password } = req.body;
-
-    const existUser = await User.findOne({ where: { username } });
-
-    if (existUser) {
-      res.status(400).json({ message: 'User already exists' });
-      return;
-    }
-
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = await User.create({
-      username,
-      password: hashedPassword,
-    });
-
-    await newUser.save();
-    res.status(200).json("User created!")
-  } catch (err) {
-    res.status(500).json(err);
   }
 });
 
@@ -114,6 +84,7 @@ router.post('/logout', (req, res) => {
   } else {
     res.status(404).end();
   }
+  return redirect('/');
 });
 
 module.exports = router;
