@@ -15,6 +15,7 @@ hr{
     height:5px;
     background-color: var(--dark);
 }
+
 body {
 background-color: var(--primary);
 margin: 0;
@@ -43,23 +44,6 @@ width: 94%;
 
 p {
 font-size: 1.2rem;
-}
-
-.btn,
-.btnCity {
-font-size: 1.3rem;
-text-decoration: none;
-padding: 6px 5px;
-width: 100%;
-display: block;
-margin: 5px 0;
-border-radius: var(--border-radius);
-color: var(--primary);
-border: none;
-outline: none;
-background-color: var(--light-dark);
-box-shadow: 3px 3px var(--dark);
-transform: translate(-1px, -1px);
 }
 
 .btn:hover {
@@ -297,10 +281,24 @@ flex: 0 0 calc(100% * 11 / 12 - 2%);
 flex: 0 0 100%;
 }
 
-#today-weather-icon {
-    max-height: 3em;
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
+.nav-item {
+    margin-left: 10px;
+}
+
+.nav-link {
+    color: #333;
+    text-decoration: none;
+    font-size: 25px;
+    transition: color 0.3s;
+    padding: 5px 10px;
+}
 /* col-sm */
 @media screen and (min-width: 640px) {
 .col-sm-1 {
