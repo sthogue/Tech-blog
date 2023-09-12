@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         // Pass serialized data and session flag into template
         res.render('homepage', {
             userPosts,
-            logged_in: req.session.logged_in,
+            logged_in: req.session.user_id,
         });
     } catch (err) {
         res.status(500).json(err);
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
 // get login page
 router.get('/login', (req, res) => {
-    if (req.session.loggedIn) {
+    if (req.session.user_id) {
         res.redirect('/');
         return;
     }
@@ -41,6 +41,18 @@ router.get ('/signup', (req, res) => {
     res.render('signup');
 
 });
+
+router.get('/logout', (req, res) => {
+    if (req.session.logged_in) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
+    return redirect('/');
+});
+
 
 router.get('/post/:id', async (req, res) => {
     try {
@@ -71,5 +83,7 @@ router.get('/post/:id', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+
 
 module.exports = router;

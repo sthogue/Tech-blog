@@ -3,17 +3,17 @@
         <h3>Your Posts:</h3>
         {{#each posts as |post|}}
         <div class="post">
-            <h2>{{post.name}}</h2>
-            <p>{{post.description}}</p>
+            <h2>{{post.title}}</h2>
+            <p>{{post.content}}</p>
             <div class="post-details">
-                <p class="created-by">Created by: {{post.user.name}}</p>
-                <p class="created-on">Created on {{format_date post.date_created}}</p>
+                <p class="created-by">Created by: {{post.user.username}}</p>
+                {{!-- <p class="created-on">Created on {{format_date post.date_created}}</p> --}}
             </div>
         </div>
         {{/each}}
     </div>
     <div class="new-post-btn-container">
-        <a href="#" class="new-post-btn">+ New Post</a>
+        <a href="/dashboard/new-post" class="new-post-btn">+ New Post</a>
     </div>
     <div class="new-post-form-container" style="display: none;">
         <form id="new-post-form">
@@ -26,4 +26,4 @@
 
 </section>
 
-<script src="/javascript/new-post.js"></script>
+<script src="/js/new-post.js"></script>
