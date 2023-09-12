@@ -26,6 +26,11 @@ Post.init(
                 len: [1]
             },
         },
+        date_created: {
+            type: DataTypes.DATE,
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
+        },
         //user id
         user_id: {
             type: DataTypes.INTEGER,

@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
@@ -49,18 +49,45 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.get('/signup', async (req, res) => {
+  try {
+    const { username, password } = req.body;
+
+    const existUser = await User.findOne({ where: { username } });
+
+    if (existUser) {
+      res.status(400).json({ message: 'User already exists' });
+      return;
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = await User.create({
+      username,
+      password: hashedPassword,
+    });
+
+    await newUser.save();
+    res.status(200).json("User created!")
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.post('/login', async (req, res) => {
   try {
-    const userData = await User.findOne({ where: { username: req.body.username } });
+    const dbUserData = await User.findOne({ 
+      where: { 
+        username: req.body.username } });
 
-    if (!userData) {
+    if (!dbUserData) {
       res
         .status(400)
         .json({ message: 'Incorrect username or password, please try again' });
       return;
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+    const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
       res
@@ -70,11 +97,8 @@ router.post('/login', async (req, res) => {
     }
 
     req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.username = userData.username;
       req.session.logged_in = true;
-      
-      res.json({ user: userData, message: 'You are now logged in!' });
+      res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
