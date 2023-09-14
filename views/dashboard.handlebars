@@ -1,13 +1,21 @@
+<div class='row'>
+    <div class='col-auto'>
+        <h2>Welcome to your dashboard, {{user.username}}!</h2>
+    </div>
+</div>
+
 <div class="dashboard-container">
     <div class="posts-container">
         <h3>Your Posts:</h3>
         {{#each posts as |post|}}
         <div class="post">
-            <h2>{{post.title}}</h2>
+            <h2><a href="/post/{{id}}">{{post.title}}</a></h2>
             <p>{{post.content}}</p>
             <div class="post-details">
                 <p class="created-by">Created by: {{post.user.username}}</p>
                 <p class="created-on">Created on {{format_date post.date_created}}</p>
+                <button class='btn btn-sm btn-success edit' data-id='{{post.id}}'>Edit</button>
+                <button class='btn btn-sm btn-danger delete' data-id='{{post.id}}'>delete</button>
             </div>
         </div>
         {{/each}}

@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 
         // Pass serialized data and session flag into template
         res.render('homepage', {
-            ...userPosts,
+            userPosts,
             //logged_in: req.session.user_id,
         });
     } catch (err) {
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 // get login page
 router.get('/login', (req, res) => {
     if (req.session.user_id) {
-        res.redirect('/');
+        res.redirect('/dashboard');
         return;
     }
     res.render('login');
