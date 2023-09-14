@@ -68,6 +68,7 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.user_id = dbUserData.id;
+      req.session.loggedIn = true;
       res.json({ user: dbUserData, message: 'You are now logged in!' });
     });
 
@@ -77,7 +78,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
+  if (req.session.user_id) {
     req.session.destroy(() => {
       res.status(204).end();
     });

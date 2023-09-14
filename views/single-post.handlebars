@@ -1,9 +1,8 @@
 <div class="text-center">
-    <h2>{{post.title}}</h2>
+    <h2>{{title}}</h2>
     <div>
-        <p>Created by: {{post.user.username}} on {{format_date post.date_created}}</p>
+        <p>Created by: {{user.username}} on {{format_date date_created}}</p>
     </div>
-    <p>{{post.body}}</p>
     <p>
         <button class="btn btn-primary">Comment</button>
     </p>
@@ -21,7 +20,6 @@
                     {{user.username}} on {{format_date post.date_created}}
                 </div>
                 <div class="text">
-                    {{body}}
                 </div>
             </section>
             {{/each}}

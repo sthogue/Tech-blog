@@ -7,7 +7,7 @@
             <p>{{post.content}}</p>
             <div class="post-details">
                 <p class="created-by">Created by: {{post.user.username}}</p>
-                {{!-- <p class="created-on">Created on {{format_date post.date_created}}</p> --}}
+                <p class="created-on">Created on {{format_date post.date_created}}</p>
             </div>
         </div>
         {{/each}}
@@ -26,4 +26,4 @@
 
 </section>
 
-<script src="/js/new-post.js"></script>
+{{!-- <script src="/js/new-post.js"></script> --}}
