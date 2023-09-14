@@ -1,1 +1,17 @@
-[]
+[
+    {
+        "title": "Guess who I met?!",
+        "content": "This person is a famous tech entrepreneur who is known for creating Microsoft and being the richest person in the world.",
+        "user_id": 1
+    },
+    {
+        "title": "Should AI be allowed to make decisions?",
+        "content": "Is AI becoming too intelligent for humans to control? Should we be worried?",
+        "user_id": 2
+    },
+    {
+        "title": "Here's my thoughts about the newest music streaming competitor",
+        "content": "A game for Windows and macOS where players move a ball through a series of increasingly challenging mazes.",
+        "user_id": 3
+    }
+]

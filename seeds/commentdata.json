@@ -1,1 +1,33 @@
-[]
+[
+    {
+        "comment_text": "This is a comment",
+        "post_id": 1,
+        "user_id": 2
+    },
+    {
+        "comment_text": "No way",
+        "post_id": 1,
+        "user_id": 3
+
+    },
+    {
+        "comment_text": "How about no.",
+        "post_id": 2,
+        "user_id": 1
+    },
+    {
+        "comment_text": "Could be better",
+        "post_id": 2,
+        "user_id": 3
+    },
+    {
+        "comment_text": "Thats a great app",
+        "post_id": 3,
+        "user_id": 1
+    },
+    {
+        "comment_text": "I'll stick with what I currently have",
+        "post_id": 3,
+        "user_id": 2
+    }
+]
